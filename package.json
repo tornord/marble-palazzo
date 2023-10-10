@@ -1,0 +1,48 @@
+{
+  "name": "marble-palazzo",
+  "version": "1.0.0",
+  "description": "Three JS sandbox project",
+  "type": "module",
+  "main": "docs/index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js --ext .jsx src/ --fix",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tornord/marble-palazzo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tornord/marble-palazzo/issues"
+  },
+  "homepage": "https://github.com/tornord/marble-palazzo#readme",
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "dotenv": "^16.0.3",
+    "lil-gui": "^0.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.152.2",
+    "vite-plugin-glsl": "^1.1.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.40.0",
+    "eslint-plugin-react": "^7.32.2",
+    "jsdom": "^22.0.0",
+    "vite": "^4.3.5",
+    "vitest": "^0.31.0"
+  }
+}
