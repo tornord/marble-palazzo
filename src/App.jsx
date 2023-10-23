@@ -97,6 +97,7 @@ export function App() {
 
     const mixers = []; // Array of mixers in case of many models
     const meshes = {};
+    const groups = {};
     const sceneObjects = [];
     let ball = null;
     const startYs = [];
@@ -119,7 +120,9 @@ export function App() {
           } else {
             child.castShadow = true;
           }
-          meshes[child.name.toLowerCase()] = child;
+          meshes[child.name] = child;
+        } else {
+          groups[child.name] = child;
         }
         // child.material = colorsMaterial;
       });
@@ -139,7 +142,7 @@ export function App() {
 
       // House body
       for (let i = 0; i < 6; i++) {
-        const c = meshes[`house00${i + 1}`].clone();
+        const c = meshes[`House00${i + 1}`].clone();
         c.position.set(0, -18 + 6 * i, 0);
         c.receiveShadow = true;
         addObject(c);
@@ -147,12 +150,12 @@ export function App() {
 
       // Balcony
       for (let i = 0; i < 6; i++) {
-        for (const n of ["balcony", "balconywall"]) {
+        for (const n of ["Balcony", "BalconyWall"]) {
           const c = meshes[n].clone();
           c.position.set(i % 2 === 0 ? 0 : 11, -9 + 6 * i, i % 2 === 0 ? -11 : 0);
           c.rotation.set(0, i % 2 === 0 ? -Math.PI / 2 : Math.PI / 2, 0);
           addObject(c);
-          if (!n.endsWith("wall")) {
+          if (!n.endsWith("Wall")) {
             c.castShadow = true;
             c.receiveShadow = true;
           }
@@ -161,7 +164,8 @@ export function App() {
 
       // Turret
       for (let i = 0; i < 6; i++) {
-        for (const n of ["turretapplied", "turretwall"]) {
+        const ns = groups["Turret"].children.map((d) => d.name);
+        for (const n of ns) {
           // "plane014", "plane014_1", "plane014_2"
           const c = meshes[n].clone();
           c.position.set(i % 2 === 0 ? 0 : 11, -12 + 6 * i, i % 2 === 0 ? 0 : -11);
@@ -169,7 +173,7 @@ export function App() {
             c.rotation.set(0, Math.PI, 0);
           }
           addObject(c);
-          if (!n.endsWith("wall")) {
+          if (!n.endsWith("Wall")) {
             c.castShadow = true;
             c.receiveShadow = true;
           }
@@ -178,7 +182,7 @@ export function App() {
 
       // Cornerboard turret
       for (let i = 0; i < 6; i++) {
-        const c = meshes.cornerboard.clone();
+        const c = meshes["CornerBoard"].clone();
         c.position.set(i % 2 === 0 ? 0 : 11, -12 + 6 * i, i % 2 === 0 ? 0 : -11);
         if (i % 2 === 1) {
           c.rotation.set(0, Math.PI, 0);
@@ -188,16 +192,16 @@ export function App() {
 
       // Cornerboard balcony
       for (let i = 0; i < 6; i++) {
-        const c = meshes.cornerboard.clone();
+        const c = meshes["CornerBoard"].clone();
         c.position.set(i % 2 === 0 ? 0 : 11, -9 + 6 * i, i % 2 === 0 ? -11 : 0);
         c.rotation.set(0, i % 2 === 0 ? -Math.PI / 2 : Math.PI / 2, 0);
         addObject(c);
       }
 
       // Shelfs
-      const g1 = ["window", "ivy", "windowwall"]; //"beziercurve001", "beziercurve001_1"];
-      const g2 = ["shelf", "shelfwall", "bricks", "brickswall"]; // "cube001", "cube001_1"];
-      const g3 = ["hatch", "hatchwall"]; //["cube052", "cube052_1"];
+      const g1 = ["Window", "Ivy", "WindowWall"]; //"beziercurve001", "beziercurve001_1"];
+      const g2 = ["Shelf", "ShelfWall", "Bricks", "BricksWall"]; // "cube001", "cube001_1"];
+      const g3 = ["Hatch", "HatchWall"]; //["cube052", "cube052_1"];
       const xs2 = [0, 7.5, 11, 3.5];
       const zs2 = [-7.5, -11, -3.5, 0];
       const xs1 = [0, 3.5, 11, 7.5];
@@ -219,7 +223,7 @@ export function App() {
           const c = meshes[n].clone();
           c.position.set(x, y, z);
           c.rotation.set(0, Math.PI / 2 - (side * Math.PI) / 2, 0);
-          if (!n.endsWith("wall")) {
+          if (!n.endsWith("Wall")) {
             c.castShadow = true;
             c.receiveShadow = true;
           }
@@ -240,7 +244,7 @@ export function App() {
       //   }
       // }
 
-      const c = meshes.ball.clone();
+      const c = meshes["Ball"].clone();
       c.position.set(-0.5, 24, 0.5);
       c.castShadow = true;
       ball = c;
